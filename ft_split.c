@@ -6,103 +6,104 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:05:54 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/17 16:32:24 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/19 13:11:25 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char set);
-
-static int	ft_word_len(char const *s, char set);
-
-static char	*ft_add_word(char const *s, int size);
-
-static int	ft_is_sep(char c, char sep);
-
-char	**ft_split(char const *s, char c)
+static int	ft_is_sep(char c, char sep)
 {
-	int		count_words;
-	char	**new;
-	int		word_len;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	word_len = 0;
-	count_words = ft_count_words(s, c);
-	new = malloc(sizeof(char *) * (count_words + 1));
-	if (!new)
-		return (NULL);
-	while (s[i] != '\0')
-	{
-		while (s[i] && ft_is_sep(s[i], c))
-			i++;
-		word_len = ft_word_len(&s[i], c);
-		if (word_len)
-			new[j++] = ft_add_word(&s[i], word_len);
-		i += word_len;
-		word_len = 0;
-	}
-	new[j] = NULL;
-	return (new);
-}
-
-static int	ft_is_sep(char c, char set)
-{
-	if (set == c)
+	if (sep == c)
 		return (1);
 	return (0);
 }
 
-static char	*ft_add_word(char const *s, int size)
+static void	ft_free_all(char **s)
 {
-	int		i;
-	char	*dest;
+	int	i;
 
 	i = 0;
-	dest = NULL;
-	dest = malloc(sizeof(char) * (size + 1));
-	if (dest == NULL)
-		return (0);
-	while (s[i] && i < size)
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		dest[i] = s[i];
+		free(s[i]);
+		i++;
+	}
+	free(s);
+}
+
+static int	ft_count_words(char const *s, char sep)
+{
+	int	count = 0;
+	int	i = 0;
+
+	while (s[i])
+	{
+		while (s[i] && ft_is_sep(s[i], sep))
+			i++;
+		if (s[i])
+		{
+			count++;
+			while (s[i] && !ft_is_sep(s[i], sep))
+				i++;
+		}
+	}
+	return (count);
+}
+
+static char	*ft_strduprange(char const *s, int min, int max)
+{
+	char	*dest;
+	int		i;
+
+	i = 0;
+	dest = malloc(sizeof(char) * (max - min + 1));
+	if (!dest)
+		return (0);
+	while (i < max - min)
+	{
+		dest[i] = s[min + i];
 		i++;
 	}
 	dest[i] = '\0';
 	return (dest);
 }
 
-static int	ft_word_len(char const *s, char set)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
+	char	**new;
+	int		i;
+	int		j;
+	int		bp;
 
 	i = 0;
-	while (s[i] && !ft_is_sep(s[i], set))
-		i++;
-	return (i);
-}
-
-static int	ft_count_words(char const *s, char set)
-{
-	int	i;
-	int	count;
-	int	word_len;
-
-	i = 0;
-	count = 0;
-	word_len = 0;
-	while (s[i] != '\0')
+	j = 0;
+	if (!s)
+		return (NULL);
+	new = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (!new)
+		return (NULL);
+	while (s[i])
 	{
-		while (s[i] && ft_is_sep(s[i], set))
+		while (s[i] && ft_is_sep(s[i], c))
 			i++;
-		word_len = ft_word_len(&s[i], set);
-		if (word_len)
-			count++;
-		i += word_len;
-		word_len = 0;
+		bp = i;
+		while (s[i] && !ft_is_sep(s[i], c))
+			i++;
+		if (bp < i)
+		{
+			new[j] = ft_strduprange(s, bp, i);
+			if (!new[j])
+			{
+				ft_free_all(new);
+				return (NULL);
+			}
+			j++;
+		}
 	}
-	return (count);
+	new[j] = NULL;
+	return (new);
 }
+
