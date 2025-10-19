@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 14:05:54 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/19 13:11:25 by judehon          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
+#include <stdlib.h>
 
 static int	ft_is_sep(char c, char sep)
 {
@@ -36,9 +24,11 @@ static void	ft_free_all(char **s)
 
 static int	ft_count_words(char const *s, char sep)
 {
-	int	count = 0;
-	int	i = 0;
+	int	count;
+	int	i;
 
+    count = 0;
+    i = 0;
 	while (s[i])
 	{
 		while (s[i] && ft_is_sep(s[i], sep))
@@ -76,34 +66,25 @@ char	**ft_split(char const *s, char c)
 	char	**new;
 	int		i;
 	int		j;
-	int		bp;
+	int		start;
 
-	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
 	new = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!new)
 		return (NULL);
+	i = 0;
+	j = 0;
 	while (s[i])
 	{
 		while (s[i] && ft_is_sep(s[i], c))
 			i++;
-		bp = i;
+		start = i;
 		while (s[i] && !ft_is_sep(s[i], c))
 			i++;
-		if (bp < i)
-		{
-			new[j] = ft_strduprange(s, bp, i);
-			if (!new[j])
-			{
-				ft_free_all(new);
-				return (NULL);
-			}
-			j++;
-		}
+		if (start < i && !(new[j++] = ft_strduprange(s, start, i)))
+			return (ft_free_all(new), NULL);
 	}
 	new[j] = NULL;
 	return (new);
 }
-
