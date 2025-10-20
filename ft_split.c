@@ -1,4 +1,16 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 14:05:54 by judehon           #+#    #+#             */
+/*   Updated: 2025/10/20 16:40:45 by judehon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 static int	ft_is_sep(char c, char sep)
 {
@@ -27,8 +39,8 @@ static int	ft_count_words(char const *s, char sep)
 	int	count;
 	int	i;
 
-    count = 0;
-    i = 0;
+	count = 0;
+	i = 0;
 	while (s[i])
 	{
 		while (s[i] && ft_is_sep(s[i], sep))
