@@ -6,7 +6,7 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:28:42 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/17 13:55:43 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:36:33 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	final_str = malloc(sizeof(char) * len + 1);
+	final_str = malloc(sizeof(char) * (len + 1));
 	if (!final_str)
 		return (NULL);
 	i = 0;

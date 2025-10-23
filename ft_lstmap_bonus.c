@@ -6,7 +6,7 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 18:16:41 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/19 12:56:53 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 14:52:15 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*tmp;
 	void	*data;
 
-	if (!lst)
+	if (!lst || !f || !del)
 		return (NULL);
 	new = NULL;
 	while (lst)

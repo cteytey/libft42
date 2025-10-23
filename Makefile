@@ -60,15 +60,15 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(ARCS) $(NAME) $(OBJ)
 
+bonus : $(OBJ) $(BONUS)
+	$(ARCS) $(NAME) $(OBJ) $(BONUS)
+
 clean :
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(BONUS)
 
 fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
-
-bonus : fclean $(OBJ) $(BONUS)
-	$(ARCS) $(NAME) $(OBJ) $(BONUS)
 
 .PHONY: all clean fclean re

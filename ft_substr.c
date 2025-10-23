@@ -6,22 +6,11 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:03:07 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/18 17:54:08 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:43:18 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	*emptysub(void)
-{
-	char	*sub;
-
-	sub = (char *)malloc(1);
-	if (!sub)
-		return (NULL);
-	sub[0] = '\0';
-	return (sub);
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -34,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	slen = ft_strlen(s);
 	if (start >= slen)
 	{
-		substring = emptysub();
+		substring = ft_strdup("");
 		return (substring);
 	}
 	if (len > slen - start)

@@ -6,7 +6,7 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:05:54 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/20 18:21:33 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:24:31 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static int	ft_fill_split(char **new, char const *s, char c)
 	return (1);
 }
 
-
 char	**ft_split(char const *s, char c)
 {
 	char	**new;
@@ -104,4 +103,3 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (new);
 }
-

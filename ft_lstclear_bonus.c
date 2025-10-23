@@ -6,7 +6,7 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:24:11 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/18 18:14:51 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 14:50:01 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	tmp = *lst;
+	if (!lst || !del)
+		return ;
 	while (*lst)
 	{
 		tmp = (*lst)-> next;

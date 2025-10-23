@@ -6,7 +6,7 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:04:09 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/17 16:15:48 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:40:58 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = 0;
-	if (little[0] == 0)
+	if (!*little)
 		return ((char *) big);
 	while (big[i] && i < len)
 	{
@@ -30,5 +30,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		j = 0;
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,12 +6,13 @@
 /*   By: judehon <judehon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:27:12 by judehon           #+#    #+#             */
-/*   Updated: 2025/10/18 18:11:37 by judehon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:44:36 by judehon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
 
